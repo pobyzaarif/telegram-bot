@@ -20,5 +20,9 @@
 # Go workspace file
 go.work
 
+# Config file
 config.json
-./telegram-bot
+
+# Binary build
+main
+telegram-bot

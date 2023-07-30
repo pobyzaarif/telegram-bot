@@ -26,5 +26,4 @@ jobs:
         project_path: "./app/main"
         binary_name: "telegram-bot"
         extra_files: config.json.example LICENSE README.md
-        build_flags: -v
-        ldflags: -X 'main.version=$(git describe --tags --abbrev=0)'
+        ldflags: "-X main.version=$(git describe --tags $(git rev-list --tags --max-count=1))"

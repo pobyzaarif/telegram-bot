@@ -19,9 +19,18 @@ type BodyPayload struct {
 	DisableNotification bool   `json:"disable_notification"`
 }
 
+// version variable to hold the application version
+var version string
+
 func main() {
+	v := flag.Bool("v", false, "print version")
 	messagePtr := flag.String("message", "this is test message", "message that will send to bot")
 	flag.Parse()
+
+	if *v {
+		fmt.Println(version)
+		return
+	}
 
 	conf := config.LoadConfig("./config.json")
 
