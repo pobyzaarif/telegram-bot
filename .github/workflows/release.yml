@@ -19,6 +19,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: wangyoucao577/go-release-action@v1
+      env:
+        RELEASE_TAG: ${{ github.event.release.tag_name }}
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         goos: ${{ matrix.goos }}
@@ -26,4 +28,4 @@ jobs:
         project_path: "./app/main"
         binary_name: "telegram-bot"
         extra_files: config.json.example LICENSE README.md
-        ldflags: "-X main.version=$(git describe --tags $(git rev-list --tags --max-count=1))"
+        ldflags: "-X 'github.com/pobyzaarif/telegram-bot/build.Version=$RELEASE_TAG'"
