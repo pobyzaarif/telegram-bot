@@ -25,4 +25,4 @@ jobs:
         goarch: ${{ matrix.goarch }}
         project_path: "./app/main"
         binary_name: "telegram-bot"
-        extra_files: env.example LICENSE README.md
+        extra_files: config.json.example LICENSE README.md
