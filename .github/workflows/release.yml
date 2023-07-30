@@ -18,9 +18,15 @@ jobs:
             goos: windows
     steps:
     - uses: actions/checkout@v3
+
+    - name: Set APP_VERSION env
+      run: echo APP_VERSION=$(basename ${GITHUB_REF}) >> ${GITHUB_ENV}
+    - name: Set BUILD_TIME env
+      run: echo BUILD_TIME=$(date --iso-8601=seconds) >> ${GITHUB_ENV}
+    - name: Environment Printer
+      uses: managedkaos/print-env@v1.0
+
     - uses: wangyoucao577/go-release-action@v1
-      env:
-        RELEASE_TAG: ${{ github.event.release.tag_name }}
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         goos: ${{ matrix.goos }}
@@ -28,4 +34,4 @@ jobs:
         project_path: "./app/main"
         binary_name: "telegram-bot"
         extra_files: config.json.example LICENSE README.md
-        ldflags: "-X main.version=$RELEASE_TAG"
+        ldflags: -X "main.appVersion==${{ env.APP_VERSION }}" -X "main.buildTime=${{ env.BUILD_TIME }}" -X main.gitCommit=${{ github.sha }}
