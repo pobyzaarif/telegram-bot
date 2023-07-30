@@ -1,0 +1,7 @@
+{
+    "app_setting": {
+        "telegram_bot_post_url": "https://api.telegram.org/bot{{1111bot_id11111}}/sendMessage?message_thread_id={{optional_if_the_group_has_some_topics}}",
+        "chat_id": "11111111111",
+        "disable_notification": false
+    }
+}
