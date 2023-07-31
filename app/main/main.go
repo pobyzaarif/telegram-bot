@@ -27,7 +27,8 @@ var (
 
 func main() {
 	v := flag.Bool("v", false, "print version info")
-	messagePtr := flag.String("message", "this is test message", "message that will send to bot")
+	messagePtr := flag.String("message", "this is test message", "message that will send to telegram by bot")
+	configFilePtr := flag.String("configfile", "./config.json", "full path of config.json. pls read config.json.example")
 	flag.Parse()
 
 	if *v {
@@ -37,7 +38,7 @@ func main() {
 		return
 	}
 
-	conf := config.LoadConfig("./config.json")
+	conf := config.LoadConfig(*configFilePtr)
 
 	toURL := conf.AppSetting.TelegramBotPostURL
 
