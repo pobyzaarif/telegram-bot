@@ -26,3 +26,6 @@ config.json
 # Binary build
 main
 telegram-bot
+
+# Download via download_latest.sh
+telegram-bot-*
